@@ -9,19 +9,20 @@ import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class WIZLightsUnitTest extends TestCase
+public class WIZLightsTest extends TestCase
 {
-    @Test
-    public void TestCopyTobInfoToClipboard() throws IOException {
-        socket = new DatagramSocket();
-        address = InetAddress.getByName("192.168.2.17");
-        String msg = "{\"method\":\"setPilot\",\"params\":{\"state\":true,\"r\":255,\"g\":0,\"b\":230,\"w\":34}}";
-        sendEcho(msg);
-    }
     private DatagramSocket socket;
     private InetAddress address;
 
     private byte[] buf;
+
+    @Test
+    public void WizLightTest() throws IOException {
+        socket = new DatagramSocket();
+        address = InetAddress.getByName("192.168.2.21");
+        String msg = "{\"method\":\"setPilot\",\"params\":{\"state\":true,\"r\":255,\"g\":0,\"b\":230,\"w\":34}}";
+        sendEcho(msg);
+    }
 
     void sendEcho(String msg) throws IOException {
         buf = msg.getBytes();

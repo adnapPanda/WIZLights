@@ -3,14 +3,16 @@ package com.WIZLights;
 import com.google.inject.Provides;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.api.events.GameStateChanged;
+import net.runelite.api.events.ChatMessage;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.util.ColorUtil;
+import net.runelite.client.util.Text;
+
+import java.awt.Color;
 
 @Slf4j
 @PluginDescriptor(
@@ -24,24 +26,28 @@ public class WIZLightsPlugin extends Plugin
 	@Inject
 	private WIZLightsConfig config;
 
+	@Inject
+	private WIZLights wizLights;
+
 	@Override
 	protected void startUp() throws Exception
 	{
-		log.info("Example started!");
 	}
 
 	@Override
 	protected void shutDown() throws Exception
 	{
-		log.info("Example stopped!");
 	}
 
 	@Subscribe
-	public void onGameStateChanged(GameStateChanged gameStateChanged)
+	public void onChatMessage(ChatMessage event)
 	{
-		if (gameStateChanged.getGameState() == GameState.LOGGED_IN)
-		{
-			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Example says " + config.greeting(), null);
+		String message = Text.sanitize(Text.removeTags(event.getMessage()));
+		if (message.contains("Wiz")) {
+			String[] msg = message.split(" ",4);
+			Color color = new Color(Integer.parseInt(msg[1]), Integer.parseInt(msg[2]), Integer.parseInt(msg[3]));
+			log.info("Setting lights to " + color.toString());
+			wizLights.setAllLightsColor(color);
 		}
 	}
 
