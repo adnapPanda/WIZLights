@@ -1,5 +1,8 @@
 package com.WIZLights;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -11,19 +14,13 @@ import java.util.Map;
 public class UDP {
     private DatagramSocket socket;
 
+    @Getter
+    @RequiredArgsConstructor
     public enum Method {
         GETPILOT ("getPilot"),
         SETPILOT("setPilot");
 
         private final String method;
-
-        Method(String method) {
-            this.method = method;
-        }
-
-        public String getMethod() {
-            return method;
-        }
     }
 
     public UDP() throws SocketException {
