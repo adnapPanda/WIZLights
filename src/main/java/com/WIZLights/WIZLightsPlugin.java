@@ -1,5 +1,6 @@
 package com.WIZLights;
 
+import com.WIZLights.Drops.ChambersOfXeric;
 import com.WIZLights.Drops.ValuableDrops;
 import com.google.inject.Provides;
 import javax.inject.Inject;
@@ -32,6 +33,9 @@ public class WIZLightsPlugin extends Plugin
 	@Inject
 	private ValuableDrops valuableDrops;
 
+	@Inject
+	private ChambersOfXeric cox;
+
 	@Override
 	protected void startUp() throws Exception
 	{
@@ -46,6 +50,7 @@ public class WIZLightsPlugin extends Plugin
 	public void onChatMessage(ChatMessage event)
 	{
 		valuableDrops.onChatMessage(event);
+		cox.onChatMessage(event);
 
 		String message = Text.sanitize(Text.removeTags(event.getMessage()));
 		log.info(message);
