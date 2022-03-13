@@ -1,5 +1,6 @@
 package com.WIZLights;
 
+import com.WIZLights.Drops.ValuableDrops;
 import com.google.inject.Provides;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +10,6 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.Text;
 
 import java.awt.Color;
@@ -29,6 +29,9 @@ public class WIZLightsPlugin extends Plugin
 	@Inject
 	private WIZLights wizLights;
 
+	@Inject
+	private ValuableDrops valuableDrops;
+
 	@Override
 	protected void startUp() throws Exception
 	{
@@ -42,6 +45,8 @@ public class WIZLightsPlugin extends Plugin
 	@Subscribe
 	public void onChatMessage(ChatMessage event)
 	{
+		valuableDrops.onChatMessage(event);
+
 		String message = Text.sanitize(Text.removeTags(event.getMessage()));
 		log.info(message);
 		if (message.contains("Wiz")) {
@@ -50,29 +55,7 @@ public class WIZLightsPlugin extends Plugin
 			log.info("Setting lights to " + color.toString());
 			wizLights.setAllLightsColor(color);
 		}
-		String[] parts = message.split("(?<=:)");
-		if (parts[0].equals("Valuable drop:")) {
-			String GEValue = parts[1].replaceAll("\\D+","");
-			log.info("Drop Value " + GEValue);
-			int valueOfDrop = Integer.parseInt(GEValue);
-			matchLootValue(valueOfDrop);
-		}
-	}
 
-	void matchLootValue(int value) {
-		if (config.lowValuePrice() <= value && config.mediumValuePrice() > value) {
-			log.info("Setting lights to " + config.lowValueColor().toString());
-			wizLights.setAllLightsColor(config.lowValueColor());
-		} else if (config.mediumValuePrice() <= value && config.highValuePrice() > value) {
-			log.info("Setting lights to " + config.lowValueColor().toString());
-			wizLights.setAllLightsColor(config.mediumValueColor());
-		} else if (config.highValuePrice() <= value && config.insaneValuePrice() > value) {
-			log.info("Setting lights to " + config.lowValueColor().toString());
-			wizLights.setAllLightsColor(config.highValueColor());
-		} else if (config.insaneValuePrice() <= value) {
-			log.info("Setting lights to " + config.lowValueColor().toString());
-			wizLights.setAllLightsColor(config.insaneValueColor());
-		}
 	}
 
 	@Provides
