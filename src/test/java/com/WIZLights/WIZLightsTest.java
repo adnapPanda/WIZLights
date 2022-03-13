@@ -19,7 +19,7 @@ public class WIZLightsTest extends TestCase
     @Test
     public void WizLightTest() throws IOException {
         socket = new DatagramSocket();
-        address = InetAddress.getByName("192.168.2.21");
+        address = InetAddress.getByName("192.168.2.18");
         String msg = "{\"method\":\"setPilot\",\"params\":{\"state\":true,\"r\":255,\"g\":0,\"b\":230,\"w\":34}}";
         sendEcho(msg);
     }
