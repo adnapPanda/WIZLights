@@ -35,6 +35,8 @@ public class ChambersOfXeric {
 
     //TODO dust and kit need to be based on chat message
     //TODO look at how to do disco lights with dust/kit
+    //TODO look at saving the light state and restoring color after leaving raid
+    //TODO look at no unique received state
     public void onChatMessage(ChatMessage event) {
         if (client.getLocalPlayer() == null || client.getLocalPlayer().getName() == null)
             return;
@@ -119,6 +121,8 @@ public class ChambersOfXeric {
                 return (config.enableGroupTwo() ? config.groupTwoColor() : null);
             case THREE:
                 return (config.enableGroupThree() ? config.groupThreeColor() : null);
+            case FOUR:
+                return (config.enableGroupFour() ? config.groupFourColor() : null);
             default:
                 return null;
         }

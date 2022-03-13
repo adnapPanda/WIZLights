@@ -31,6 +31,9 @@ public class WIZLights {
         params.put("g", color.getGreen());
         params.put("b", color.getBlue());
 
+        //TODO 100% brightness by default
+        params.put("dimming", 100);
+
         return params;
     }
 }
