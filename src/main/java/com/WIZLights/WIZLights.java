@@ -1,5 +1,6 @@
 package com.WIZLights;
 
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.util.Text;
 
 import javax.inject.Inject;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 public class WIZLights {
 
     @Inject
@@ -21,6 +23,7 @@ public class WIZLights {
 
     //TODO look at saving the light state and restoring color after leaving raid
     public void setAllLightsColor(Color color) {
+        log.debug("Setting lights to " + color.toString());
         List<String> ipAddresses = Text.fromCSV(config.wizLightIPAddresses());
 
         String getMessage = udp.messageBuilder(UDP.Method.GETPILOT);
@@ -33,6 +36,8 @@ public class WIZLights {
         String setMessage = udp.messageBuilder(UDP.Method.SETPILOT, getParamsFromColor(color));
         for (String ip : ipAddresses) {
             udp.sendMessage(setMessage, ip, config.wizLightPort());
+            String responseMessage = udp.receiveMessage();
+            log.debug("Response message: " + responseMessage);
         }
     }
 
