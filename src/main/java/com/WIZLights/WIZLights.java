@@ -20,7 +20,15 @@ public class WIZLights {
         List<String> ipAddresses = Text.fromCSV(config.wizLightIPAddresses());
 
         String message = udp.messageBuilder(UDP.Method.SETPILOT, getParamsFromColor(color));
-        for (String ip : ipAddresses) {
+
+        //TODO look at saving the light state and restoring color after leaving raid
+//        String currentState =  "{\"method\":\"getPilot\"}";
+//        forLoop(ipAddresses, currentState);
+        forLoop(ipAddresses, message);
+    }
+
+    public void forLoop(List<String> ips, String message) {
+        for (String ip : ips) {
             udp.sendMessage(message, ip, config.wizLightPort());
         }
     }

@@ -1,11 +1,11 @@
 package com.WIZLights;
 
 import java.awt.Color;
-import net.runelite.client.config.Alpha;
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
-import net.runelite.client.config.ConfigSection;
+
+import net.runelite.client.config.*;
+
+import static net.runelite.client.config.Units.PERCENT;
+import static net.runelite.client.config.Units.SECONDS;
 
 @ConfigGroup("WIZLights")
 public interface WIZLightsConfig extends Config
@@ -468,4 +468,39 @@ public interface WIZLightsConfig extends Config
 		return ItemGroup.NONE;
 	}
 
+	@ConfigSection(
+			name = "Lights Options",
+			description = "Several options for lights",
+			position = 3,
+			closedByDefault = false
+	)
+	String lightsOptionsSection = "lightsOptionsSection";
+
+	@Units(SECONDS)
+	@Range()
+	@ConfigItem(
+			keyName = "duration",
+			name = "Duration",
+			description = "Duration the lights stay recolored.",
+			position = 0,
+			section = lightsOptionsSection
+	)
+	default int duration()
+	{
+		return 30;
+	}
+
+	@Units(PERCENT)
+	@Range(max=100)
+	@ConfigItem(
+			keyName = "brightness",
+			name = "Brightness",
+			description = "The brightness of the lights in percentage.",
+			position = 1,
+			section = lightsOptionsSection
+	)
+	default int brightness()
+	{
+		return 100;
+	}
 }

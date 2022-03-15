@@ -21,12 +21,13 @@ public class WIZLightsTest extends TestCase
     public void WizLightTest() throws IOException {
         socket = new DatagramSocket();
         address = InetAddress.getByName("192.168.2.17");
-        String msg = "{\"method\":\"setPilot\",\"params\":{\"state\":true,\"r\":255,\"g\":0,\"b\":230,\"w\":34}}";
+        //String msg = "{\"method\":\"setPilot\",\"params\":{\"state\":true,\"r\":255,\"g\":0,\"b\":230,\"w\":34}}";
         //String msg = "{\"method\":\"getSystemConfig\"}";
-        sendEcho(msg);
+        String msg = "{\"method\":\"getPilot\"}";
+        sendMessage(msg);
     }
 
-    void sendEcho(String msg) throws IOException {
+    void sendMessage(String msg) throws IOException {
         buf = msg.getBytes();
         DatagramPacket packet
                 = new DatagramPacket(buf, buf.length, address, 38899);
