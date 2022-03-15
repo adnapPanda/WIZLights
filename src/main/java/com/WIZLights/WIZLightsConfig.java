@@ -41,9 +41,45 @@ public interface WIZLightsConfig extends Config
 	}
 
 	@ConfigSection(
+			name = "Lights Options",
+			description = "Several options for lights",
+			position = 1,
+			closedByDefault = false
+	)
+	String lightsOptionsSection = "lightsOptionsSection";
+
+	@Units(SECONDS)
+	@Range()
+	@ConfigItem(
+			keyName = "duration",
+			name = "Duration",
+			description = "Duration the lights stay recolored",
+			position = 0,
+			section = lightsOptionsSection
+	)
+	default int duration()
+	{
+		return 30;
+	}
+
+	@Units(PERCENT)
+	@Range(max=100)
+	@ConfigItem(
+			keyName = "brightness",
+			name = "Brightness",
+			description = "The brightness of the lights in percentage",
+			position = 1,
+			section = lightsOptionsSection
+	)
+	default int brightness()
+	{
+		return 100;
+	}
+
+	@ConfigSection(
 			name = "Valuable drops",
 			description = "The color of the lights when receiving a valuable drop",
-			position = 1,
+			position = 2,
 			closedByDefault = false
 	)
 	String valuableDropsColorSection = "dropsColor";
@@ -151,7 +187,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigSection(
 			name = "Chamber of Xeric",
 			description = "The color of the lights when receiving a drop at CoX",
-			position = 2,
+			position = 3,
 			closedByDefault = false
 	)
 	String coxDropsColorSection = "coxDropsColor";
@@ -466,41 +502,5 @@ public interface WIZLightsConfig extends Config
 	default ItemGroup groupDex()
 	{
 		return ItemGroup.NONE;
-	}
-
-	@ConfigSection(
-			name = "Lights Options",
-			description = "Several options for lights",
-			position = 3,
-			closedByDefault = false
-	)
-	String lightsOptionsSection = "lightsOptionsSection";
-
-	@Units(SECONDS)
-	@Range()
-	@ConfigItem(
-			keyName = "duration",
-			name = "Duration",
-			description = "Duration the lights stay recolored.",
-			position = 0,
-			section = lightsOptionsSection
-	)
-	default int duration()
-	{
-		return 30;
-	}
-
-	@Units(PERCENT)
-	@Range(max=100)
-	@ConfigItem(
-			keyName = "brightness",
-			name = "Brightness",
-			description = "The brightness of the lights in percentage.",
-			position = 1,
-			section = lightsOptionsSection
-	)
-	default int brightness()
-	{
-		return 100;
 	}
 }

@@ -77,6 +77,7 @@ public class UDP {
 
     public String convertGetToSetPilot(String message) {
         return message.replace("result", "params")
-                .replace(Method.GETPILOT.getMethod(), Method.SETPILOT.getMethod());
+                .replace(Method.GETPILOT.getMethod(), Method.SETPILOT.getMethod())
+                .replace("\"sceneId\":0,", "");
     }
 }

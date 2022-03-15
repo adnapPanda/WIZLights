@@ -17,7 +17,7 @@ import java.awt.Color;
 
 @Slf4j
 @PluginDescriptor(
-	name = "WIZSmartLights"
+	name = "WIZ Smart Lights"
 )
 public class WIZLightsPlugin extends Plugin
 {

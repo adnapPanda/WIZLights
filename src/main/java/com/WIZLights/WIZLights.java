@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class WIZLights {
@@ -19,9 +21,11 @@ public class WIZLights {
     @Inject
     private UDP udp;
 
+    @Inject
+    private ScheduledExecutorService executorService;
+
     private List<String> previousStates = new ArrayList<>();
 
-    //TODO look at saving the light state and restoring color after leaving raid
     public void setAllLightsColor(Color color) {
         log.debug("Setting lights to " + color.toString());
         List<String> ipAddresses = Text.fromCSV(config.wizLightIPAddresses());
@@ -39,6 +43,22 @@ public class WIZLights {
             String responseMessage = udp.receiveMessage();
             log.debug("Response message: " + responseMessage);
         }
+
+        executorService.schedule(this::restoreLights, config.duration(), TimeUnit.SECONDS);
+    }
+
+    public void restoreLights() {
+        log.debug("Restoring lights");
+        List<String> ipAddresses = Text.fromCSV(config.wizLightIPAddresses());
+
+        for (int i = 0; i < ipAddresses.size(); i++) {
+            String setMessage = previousStates.get(i);
+            udp.sendMessage(setMessage, ipAddresses.get(i), config.wizLightPort());
+            String responseMessage = udp.receiveMessage();
+            log.debug("Response message: " + responseMessage);
+        }
+
+        previousStates.clear();
     }
 
     private Map<String, Integer> getParamsFromColor(Color color) {

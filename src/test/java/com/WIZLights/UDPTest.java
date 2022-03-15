@@ -45,4 +45,13 @@ public class UDPTest extends TestCase {
 
         assertEquals(expectedMessage, actualMessage);
     }
+
+    @Test
+    public void convertGetToSetPilot() {
+        String getPilot = "{\"method\":\"getPilot\",\"env\":\"pro\",\"params\":{\"mac\":\"d8a011312d50\",\"rssi\":-58,\"state\":true,\"sceneId\":0,\"r\":255,\"g\":150,\"b\":0,\"c\":0,\"w\":0,\"dimming\":100}}";
+        String setPilot = udp.convertGetToSetPilot(getPilot);
+        String expectedMessage = "{\"method\":\"setPilot\",\"env\":\"pro\",\"params\":{\"mac\":\"d8a011312d50\",\"rssi\":-58,\"state\":true,\"r\":255,\"g\":150,\"b\":0,\"c\":0,\"w\":0,\"dimming\":100}}";
+
+        assertEquals(expectedMessage, setPilot);
+    }
 }
