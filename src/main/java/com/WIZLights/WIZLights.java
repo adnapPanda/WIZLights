@@ -4,6 +4,7 @@ import net.runelite.client.util.Text;
 
 import javax.inject.Inject;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,20 +17,22 @@ public class WIZLights {
     @Inject
     private UDP udp;
 
+    private List<String> previousStates = new ArrayList<>();
+
+    //TODO look at saving the light state and restoring color after leaving raid
     public void setAllLightsColor(Color color) {
         List<String> ipAddresses = Text.fromCSV(config.wizLightIPAddresses());
 
-        String message = udp.messageBuilder(UDP.Method.SETPILOT, getParamsFromColor(color));
+        String getMessage = udp.messageBuilder(UDP.Method.GETPILOT);
+        for (String ip : ipAddresses) {
+            udp.sendMessage(getMessage, ip, config.wizLightPort());
+            String responseMessage = udp.receiveMessage();
+            previousStates.add(udp.convertGetToSetPilot(responseMessage));
+        }
 
-        //TODO look at saving the light state and restoring color after leaving raid
-//        String currentState =  "{\"method\":\"getPilot\"}";
-//        forLoop(ipAddresses, currentState);
-        forLoop(ipAddresses, message);
-    }
-
-    public void forLoop(List<String> ips, String message) {
-        for (String ip : ips) {
-            udp.sendMessage(message, ip, config.wizLightPort());
+        String setMessage = udp.messageBuilder(UDP.Method.SETPILOT, getParamsFromColor(color));
+        for (String ip : ipAddresses) {
+            udp.sendMessage(setMessage, ip, config.wizLightPort());
         }
     }
 
@@ -39,8 +42,7 @@ public class WIZLights {
         params.put("g", color.getGreen());
         params.put("b", color.getBlue());
 
-        //TODO 100% brightness by default
-        params.put("dimming", 100);
+        params.put("dimming", config.brightness());
 
         return params;
     }

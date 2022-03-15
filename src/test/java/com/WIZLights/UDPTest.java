@@ -26,7 +26,7 @@ public class UDPTest extends TestCase {
     }
 
     @Test
-    public void messageBuilderTest() throws IOException {
+    public void messageBuilderSetPilotTest() {
         Map<String, Integer> params = new HashMap<>();
         params.put("r", 255);
         params.put("g", 0);
@@ -34,6 +34,14 @@ public class UDPTest extends TestCase {
 
         String actualMessage = udp.messageBuilder(UDP.Method.SETPILOT, params);
         String expectedMessage = "{\"method\":\"setPilot\",\"params\":{\"r\":255,\"b\":230,\"g\":0}}";
+
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void messageBuilderGetPilotTest() {
+        String actualMessage = udp.messageBuilder(UDP.Method.GETPILOT);
+        String expectedMessage = "{\"method\":\"getPilot\"}";
 
         assertEquals(expectedMessage, actualMessage);
     }
