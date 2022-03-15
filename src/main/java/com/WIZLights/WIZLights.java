@@ -47,7 +47,7 @@ public class WIZLights {
         executorService.schedule(this::restoreLights, config.duration(), TimeUnit.SECONDS);
     }
 
-    public void restoreLights() {
+    private void restoreLights() {
         log.debug("Restoring lights");
         List<String> ipAddresses = Text.fromCSV(config.wizLightIPAddresses());
 
