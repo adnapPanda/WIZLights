@@ -26,7 +26,7 @@ public class WIZLights {
 
     private List<String> previousStates = new ArrayList<>();
 
-    public void setAllLightsColor(Color color) {
+    public void setAllLightsColorExecute(Color color) {
         log.debug("Setting lights to " + color.toString());
         List<String> ipAddresses = Text.fromCSV(config.wizLightIPAddresses());
 
@@ -45,6 +45,10 @@ public class WIZLights {
         }
 
         executorService.schedule(this::restoreLights, config.duration(), TimeUnit.SECONDS);
+    }
+
+    public void setAllLightsColor(Color color) {
+        executorService.execute(()->setAllLightsColorExecute(color));
     }
 
     private void restoreLights() {

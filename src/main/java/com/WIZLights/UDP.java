@@ -2,6 +2,7 @@ package com.WIZLights;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -11,6 +12,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Map;
 
+@Slf4j
 public class UDP {
     private DatagramSocket socket;
 
@@ -66,11 +68,12 @@ public class UDP {
     public String receiveMessage() {
         byte[] buffer = new byte[1000];
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
-
         try {
+            socket.setSoTimeout(2000);
             socket.receive(packet);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.debug(e.getMessage());
+            return "";
         }
         return new String(packet.getData(), 0, packet.getLength());
     }
@@ -79,5 +82,9 @@ public class UDP {
         return message.replace("result", "params")
                 .replace(Method.GETPILOT.getMethod(), Method.SETPILOT.getMethod())
                 .replace("\"sceneId\":0,", "");
+    }
+
+    public void closeSocket() {
+        socket.close();
     }
 }

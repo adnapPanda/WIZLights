@@ -36,6 +36,9 @@ public class WIZLightsPlugin extends Plugin
 	@Inject
 	private ChambersOfXeric cox;
 
+	@Inject
+	private UDP udp;
+
 	@Override
 	protected void startUp() throws Exception
 	{
@@ -44,6 +47,7 @@ public class WIZLightsPlugin extends Plugin
 	@Override
 	protected void shutDown() throws Exception
 	{
+		udp.closeSocket();
 	}
 
 	@Subscribe
@@ -53,7 +57,8 @@ public class WIZLightsPlugin extends Plugin
 		cox.onChatMessage(event);
 
 		String message = Text.sanitize(Text.removeTags(event.getMessage()));
-		if (event.getName().equals(client.getLocalPlayer().getName()) && message.contains("Wiz")) {
+		//To test if your lights work
+		if (event.getName().contains(client.getLocalPlayer().getName()) && message.contains("Wiztest")) {
 			String[] msg = message.split(" ",4);
 			Color color = new Color(Integer.parseInt(msg[1]), Integer.parseInt(msg[2]), Integer.parseInt(msg[3]));
 			wizLights.setAllLightsColor(color);
