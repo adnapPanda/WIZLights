@@ -3,6 +3,7 @@ package com.WIZLights.Drops;
 import com.WIZLights.WIZLights;
 import com.WIZLights.WIZLightsConfig;
 import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.ChatMessageType;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.client.util.Text;
 
@@ -19,7 +20,7 @@ public class ValuableDrops {
 
     public void onChatMessage(ChatMessage event) {
         String message = Text.sanitize(Text.removeTags(event.getMessage()));
-
+        if (event.getType() != ChatMessageType.GAMEMESSAGE) return;
         String[] parts = message.split("(?<=:)");
         if (parts[0].equals("Valuable drop:")) {
             String GEValue = parts[1].replaceAll("\\D+","");
