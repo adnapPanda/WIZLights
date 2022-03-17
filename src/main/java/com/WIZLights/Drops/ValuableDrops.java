@@ -23,7 +23,9 @@ public class ValuableDrops {
         if (event.getType() != ChatMessageType.GAMEMESSAGE) return;
         String[] parts = message.split("(?<=:)");
         if (parts[0].equals("Valuable drop:")) {
-            String GEValue = parts[1].replaceAll("\\D+","");
+            String input = parts[1], extracted;
+            extracted = input.substring(input.indexOf('('),input.lastIndexOf(')'));
+            String GEValue = extracted.replaceAll("\\D+", "");
             log.debug("Drop Value " + GEValue);
             int valueOfDrop = Integer.parseInt(GEValue);
             matchLootValue(valueOfDrop);
