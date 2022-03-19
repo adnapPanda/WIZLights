@@ -20,15 +20,23 @@ public class ValuableDrops {
 
     public void onChatMessage(ChatMessage event) {
         String message = Text.sanitize(Text.removeTags(event.getMessage()));
+        System.out.println(event.getType());
         if (event.getType() != ChatMessageType.GAMEMESSAGE) return;
-        String[] parts = message.split("(?<=:)");
-        if (parts[0].equals("Valuable drop:")) {
+        //Valuable Drop Chat message
+        if (message.contains("Valuable drop:")) {
+            String[] parts = message.split("(?<=:)");
             String input = parts[1], extracted;
             extracted = input.substring(input.indexOf('('),input.lastIndexOf(')'));
             String GEValue = extracted.replaceAll("\\D+", "");
-            log.debug("Drop Value " + GEValue);
+            log.debug("Drop Value: " + GEValue);
             int valueOfDrop = Integer.parseInt(GEValue);
             matchLootValue(valueOfDrop);
+        //Treasure Trail Value Chat message
+        } else if (message.contains("Your treasure is worth around")) {
+            String clueValue = message.replaceAll("\\D+", "");
+            log.debug("Clue Value: " + clueValue);
+            int valueOfClue = Integer.parseInt(clueValue);
+            matchLootValue(valueOfClue);
         }
     }
 
