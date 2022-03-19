@@ -8,6 +8,8 @@ import net.runelite.api.events.ChatMessage;
 import net.runelite.client.util.Text;
 
 import javax.inject.Inject;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Slf4j
 public class ValuableDrops {
@@ -18,19 +20,22 @@ public class ValuableDrops {
     @Inject
     private WIZLights wizLights;
 
+    final Pattern valuableDropPattern = Pattern.compile("\\(([0-9,]*) coins\\)");
+
+
     public void onChatMessage(ChatMessage event) {
         String message = Text.sanitize(Text.removeTags(event.getMessage()));
         System.out.println(event.getType());
         if (event.getType() != ChatMessageType.GAMEMESSAGE) return;
         //Valuable Drop Chat message
         if (message.contains("Valuable drop:")) {
-            String[] parts = message.split("(?<=:)");
-            String input = parts[1], extracted;
-            extracted = input.substring(input.indexOf('('),input.lastIndexOf(')'));
-            String GEValue = extracted.replaceAll("\\D+", "");
-            log.debug("Drop Value: " + GEValue);
-            int valueOfDrop = Integer.parseInt(GEValue);
-            matchLootValue(valueOfDrop);
+            Matcher match = valuableDropPattern.matcher(message);
+            if (match.find()) {
+                String GEValue = match.group(1).replaceAll(",", "");
+                log.debug("Drop Value: " + GEValue);
+                int valueOfDrop = Integer.parseInt(GEValue);
+                matchLootValue(valueOfDrop);
+            }
         //Treasure Trail Value Chat message
         } else if (message.contains("Your treasure is worth around")) {
             String clueValue = message.replaceAll("\\D+", "");
