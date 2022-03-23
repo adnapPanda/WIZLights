@@ -84,13 +84,25 @@ public interface WIZLightsConfig extends Config
 	)
 	String valuableDropsColorSection = "dropsColor";
 
+	@ConfigItem(
+			keyName = "enableRecolorLowValue",
+			name = "Recolor low value loot",
+			description = "Enable recoloring the lights when Insane Value loot is received",
+			section = valuableDropsColorSection,
+			position = 0
+	)
+	default boolean enableRecolorLowValue()
+	{
+		return true;
+	}
+
 	@Alpha
 	@ConfigItem(
 			keyName = "lowValueColor",
 			name = "Low value items",
 			description = "Configures the color for low value items",
 			section = valuableDropsColorSection,
-			position = 0
+			position = 1
 	)
 	default Color lowValueColor()
 	{
@@ -102,11 +114,23 @@ public interface WIZLightsConfig extends Config
 			name = "Low value price",
 			description = "Configures the start price for low value items",
 			section = valuableDropsColorSection,
-			position = 1
+			position = 2
 	)
 	default int lowValuePrice()
 	{
 		return 20000;
+	}
+
+	@ConfigItem(
+			keyName = "enableRecolorMediumValue",
+			name = "Recolor medium value loot",
+			description = "Enable recoloring the lights when Insane Value loot is received",
+			section = valuableDropsColorSection,
+			position = 3
+	)
+	default boolean enableRecolorMediumValue()
+	{
+		return true;
 	}
 
 	@Alpha
@@ -115,7 +139,7 @@ public interface WIZLightsConfig extends Config
 			name = "Medium value items",
 			description = "Configures the color for medium value items",
 			section = valuableDropsColorSection,
-			position = 2
+			position = 4
 	)
 	default Color mediumValueColor()
 	{
@@ -127,11 +151,23 @@ public interface WIZLightsConfig extends Config
 			name = "Medium value price",
 			description = "Configures the start price for medium value items",
 			section = valuableDropsColorSection,
-			position = 3
+			position = 5
 	)
 	default int mediumValuePrice()
 	{
 		return 100000;
+	}
+
+	@ConfigItem(
+			keyName = "enableRecolorHighValue",
+			name = "Recolor high value loot",
+			description = "Enable recoloring the lights when Insane Value loot is received",
+			section = valuableDropsColorSection,
+			position = 6
+	)
+	default boolean enableRecolorHighValue()
+	{
+		return true;
 	}
 
 	@Alpha
@@ -140,7 +176,7 @@ public interface WIZLightsConfig extends Config
 			name = "High value items",
 			description = "Configures the color for high value items",
 			section = valuableDropsColorSection,
-			position = 4
+			position = 7
 	)
 	default Color highValueColor()
 	{
@@ -152,11 +188,23 @@ public interface WIZLightsConfig extends Config
 			name = "High value price",
 			description = "Configures the start price for high value items",
 			section = valuableDropsColorSection,
-			position = 5
+			position = 8
 	)
 	default int highValuePrice()
 	{
 		return 1000000;
+	}
+
+	@ConfigItem(
+			keyName = "enableRecolorInsaneValue",
+			name = "Recolor insane value loot",
+			description = "Enable recoloring the lights when Insane Value loot is received",
+			section = valuableDropsColorSection,
+			position = 9
+	)
+	default boolean enableRecolorInsaneValue()
+	{
+		return true;
 	}
 
 	@Alpha
@@ -165,7 +213,7 @@ public interface WIZLightsConfig extends Config
 			name = "Insane value items",
 			description = "Configures the color for insane value items",
 			section = valuableDropsColorSection,
-			position = 6
+			position = 10
 	)
 	default Color insaneValueColor()
 	{
@@ -177,7 +225,7 @@ public interface WIZLightsConfig extends Config
 			name = "Insane value price",
 			description = "Configures the start price for insane value items",
 			section = valuableDropsColorSection,
-			position = 7
+			position = 11
 	)
 	default int insaneValuePrice()
 	{

@@ -46,13 +46,13 @@ public class ValuableDrops {
     }
 
     private void matchLootValue(int value) {
-        if (config.lowValuePrice() <= value && config.mediumValuePrice() > value) {
+        if (config.lowValuePrice() <= value && config.mediumValuePrice() > value && config.enableRecolorLowValue()) {
             wizLights.setAllLightsColor(config.lowValueColor());
-        } else if (config.mediumValuePrice() <= value && config.highValuePrice() > value) {
+        } else if (config.mediumValuePrice() <= value && config.highValuePrice() > value && config.enableRecolorMediumValue()) {
             wizLights.setAllLightsColor(config.mediumValueColor());
-        } else if (config.highValuePrice() <= value && config.insaneValuePrice() > value) {
+        } else if (config.highValuePrice() <= value && config.insaneValuePrice() > value && config.enableRecolorHighValue()) {
             wizLights.setAllLightsColor(config.highValueColor());
-        } else if (config.insaneValuePrice() <= value) {
+        } else if (config.insaneValuePrice() <= value && config.enableRecolorInsaneValue()) {
             wizLights.setAllLightsColor(config.insaneValueColor());
         }
     }
