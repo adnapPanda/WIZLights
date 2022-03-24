@@ -243,7 +243,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "enableStandardLoot",
 			name = "Recolor standard loot",
-			description = "Enable recoloring the light of the chest when no unique is obtained",
+			description = "Enable recoloring the light when no unique is obtained",
 			position = 0,
 			section = coxDropsColorSection
 	)
@@ -267,7 +267,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "enableDust",
 			name = "Recolor dust",
-			description = "Enable recoloring the light of the chest when metamorphic dust is obtained",
+			description = "Enable recoloring the light when metamorphic dust is obtained",
 			position = 2,
 			section = coxDropsColorSection
 	)
@@ -291,7 +291,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "enableKit",
 			name = "Recolor Twisted kit",
-			description = "Enable recoloring the light of the chest when a twisted kit is obtained",
+			description = "Enable recoloring the light when a twisted kit is obtained",
 			position = 4,
 			section = coxDropsColorSection
 	)
@@ -315,7 +315,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "enableGroupOne",
 			name = "Recolor group 1",
-			description = "Enable recoloring the light of the chest when a unique from group 1 is obtained",
+			description = "Enable recoloring the light when a unique from group 1 is obtained",
 			position = 6,
 			section = coxDropsColorSection
 	)
@@ -339,7 +339,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "enableGroupTwo",
 			name = "Recolor group 2",
-			description = "Enable recoloring the light of the chest when a unique from group 2 is obtained",
+			description = "Enable recoloring the light when a unique from group 2 is obtained",
 			position = 8,
 			section = coxDropsColorSection
 	)
@@ -363,7 +363,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "enableGroupThree",
 			name = "Recolor group 3",
-			description = "Enable recoloring the light of the chest when a unique from group 3 is obtained",
+			description = "Enable recoloring the light when a unique from group 3 is obtained",
 			position = 10,
 			section = coxDropsColorSection
 	)
@@ -387,7 +387,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "enableGroupFour",
 			name = "Recolor group 4",
-			description = "Enable recoloring the light of the chest when a unique from group 4 is obtained",
+			description = "Enable recoloring the light when a unique from group 4 is obtained",
 			position = 12,
 			section = coxDropsColorSection
 	)
@@ -550,5 +550,61 @@ public interface WIZLightsConfig extends Config
 	default ItemGroup groupDex()
 	{
 		return ItemGroup.NONE;
+	}
+
+	@ConfigSection(
+			name = "Theatre of Blood",
+			description = "The color of the lights when receiving a drop at Tob",
+			position = 4,
+			closedByDefault = false
+	)
+	String tobDropsColorSection = "tobDropsColor";
+
+	@ConfigItem(
+			keyName = "enableRecolorTobYour",
+			name = "Recolor your purple",
+			description = "Enable recoloring the lights when you receive a ToB unique",
+			position = 0,
+			section = tobDropsColorSection
+	)
+	default boolean enableRecolorTobYour()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "yourPurpleColor",
+			name = "Your purple",
+			description = "Color of the lights when you receive a ToB unique",
+			position = 1,
+			section = tobDropsColorSection
+	)
+	default Color yourPurpleColor()
+	{
+		return Color.MAGENTA;
+	}
+
+	@ConfigItem(
+			keyName = "enableRecolorTobOther",
+			name = "Recolor other purple",
+			description = "Enable recoloring the lights when someone else receives a ToB unique",
+			position = 2,
+			section = tobDropsColorSection
+	)
+	default boolean enableRecolorTobOther()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "otherPurpleColor",
+			name = "Other purple",
+			description = "Color of the lights when someone else receives a ToB unique",
+			position = 3,
+			section = tobDropsColorSection
+	)
+	default Color otherPurpleColor()
+	{
+		return Color.RED;
 	}
 }
