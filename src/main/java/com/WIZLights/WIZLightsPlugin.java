@@ -49,6 +49,7 @@ public class WIZLightsPlugin extends Plugin
 	@Override
 	protected void startUp() throws Exception
 	{
+		tob.reset();
 	}
 
 	@Override

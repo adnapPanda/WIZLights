@@ -411,7 +411,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "groupTwistedBow",
 			name = "Twisted bow",
-			description = "Group color to use when this item is obtained. If no group is specified, the 'unique' color will be used",
+			description = "Group color to use when this item is obtained",
 			position = 14,
 			section = coxDropsColorSection
 	)
@@ -423,7 +423,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "groupKodai",
 			name = "Kodai insignia",
-			description = "Group color to use when this item is obtained. If no group is specified, the 'unique' color will be used",
+			description = "Group color to use when this item is obtained",
 			position = 15,
 			section = coxDropsColorSection
 	)
@@ -435,7 +435,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "groupElderMaul",
 			name = "Elder maul",
-			description = "Group color to use when this item is obtained. If no group is specified, the 'unique' color will be used",
+			description = "Group color to use when this item is obtained",
 			position = 16,
 			section = coxDropsColorSection
 	)
@@ -447,7 +447,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "groupClaws",
 			name = "Dragon claws",
-			description = "Group color to use when this item is obtained. If no group is specified, the 'unique' color will be used",
+			description = "Group color to use when this item is obtained",
 			position = 17,
 			section = coxDropsColorSection
 	)
@@ -459,7 +459,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "groupAncestralHat",
 			name = "Ancestral hat",
-			description = "Group color to use when this item is obtained. If no group is specified, the 'unique' color will be used",
+			description = "Group color to use when this item is obtained",
 			position = 18,
 			section = coxDropsColorSection
 	)
@@ -471,7 +471,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "groupAncestralTop",
 			name = "Ancestral robe top",
-			description = "Group color to use when this item is obtained. If no group is specified, the 'unique' color will be used",
+			description = "Group color to use when this item is obtained",
 			position = 19,
 			section = coxDropsColorSection
 	)
@@ -483,7 +483,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "groupAncestralBottom",
 			name = "Ancestral robe bottom",
-			description = "Group color to use when this item is obtained. If no group is specified, the 'unique' color will be used",
+			description = "Group color to use when this item is obtained",
 			position = 20,
 			section = coxDropsColorSection
 	)
@@ -495,7 +495,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "groupDinhs",
 			name = "Dinh's bulwark",
-			description = "Group color to use when this item is obtained. If no group is specified, the 'unique' color will be used",
+			description = "Group color to use when this item is obtained",
 			position = 21,
 			section = coxDropsColorSection
 	)
@@ -507,7 +507,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "groupDHCB",
 			name = "Dragon hunter crossbow",
-			description = "Group color to use when this item is obtained. If no group is specified, the 'unique' color will be used",
+			description = "Group color to use when this item is obtained",
 			position = 22,
 			section = coxDropsColorSection
 	)
@@ -519,7 +519,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "groupBuckler",
 			name = "Twisted buckler",
-			description = "Group color to use when this item is obtained. If no group is specified, the 'unique' color will be used",
+			description = "Group color to use when this item is obtained",
 			position = 23,
 			section = coxDropsColorSection
 	)
@@ -531,7 +531,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "groupArcane",
 			name = "Arcane prayer scroll",
-			description = "Group color to use when this item is obtained. If no group is specified, the 'unique' color will be used",
+			description = "Group color to use when this item is obtained",
 			position = 24,
 			section = coxDropsColorSection
 	)
@@ -543,7 +543,7 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "groupDex",
 			name = "Dexterous prayer scroll",
-			description = "Group color to use when this item is obtained. If no group is specified, the 'unique' color will be used",
+			description = "Group color to use when this item is obtained",
 			position = 25,
 			section = coxDropsColorSection
 	)
