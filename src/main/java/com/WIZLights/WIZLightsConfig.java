@@ -241,25 +241,25 @@ public interface WIZLightsConfig extends Config
 	String coxDropsColorSection = "coxDropsColor";
 
 	@ConfigItem(
-			keyName = "enableStandardLoot",
+			keyName = "enableCoxStandardLoot",
 			name = "Recolor standard loot",
 			description = "Enable recoloring the light when no unique is obtained",
 			position = 0,
 			section = coxDropsColorSection
 	)
-	default boolean enableStandardLoot()
+	default boolean enableCoxStandardLoot()
 	{
 		return true;
 	}
 
 	@ConfigItem(
-			keyName = "standardLoot",
+			keyName = "coxStandardLootColor",
 			name = "Standard loot",
 			description = "Color of light when no unique item is obtained",
 			position = 1,
 			section = coxDropsColorSection
 	)
-	default Color standardLoot()
+	default Color coxStandardLootColor()
 	{
 		return Color.WHITE;
 	}
@@ -561,25 +561,25 @@ public interface WIZLightsConfig extends Config
 	String tobDropsColorSection = "tobDropsColor";
 
 	@ConfigItem(
-			keyName = "enableRecolorTobStandardLoot",
+			keyName = "enableTobStandardLoot",
 			name = "Recolor standard loot",
 			description = "Enable recoloring the lights when no unique item is obtained",
 			position = 0,
 			section = tobDropsColorSection
 	)
-	default boolean enableRecolorTobStandardLoot()
+	default boolean enableTobStandardLoot()
 	{
 		return true;
 	}
 
 	@ConfigItem(
-			keyName = "standardLootTobColor",
+			keyName = "tobStandardLootColor",
 			name = "Standard loot",
 			description = "Color of the lights when no unique item is obtained",
 			position = 1,
 			section = tobDropsColorSection
 	)
-	default Color standardLootTobColor()
+	default Color tobStandardLootColor()
 	{
 		return Color.WHITE;
 	}

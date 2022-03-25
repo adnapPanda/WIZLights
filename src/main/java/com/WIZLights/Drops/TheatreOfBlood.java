@@ -63,8 +63,8 @@ public class TheatreOfBlood {
             if (chestCount == getTobTeamSize()) {
                 if (!uniqueReceived) {
                     log.debug("No purples received");
-                    if (config.enableRecolorTobStandardLoot()) {
-                        wizLights.setAllLightsColor(config.standardLootTobColor());
+                    if (config.enableTobStandardLoot()) {
+                        wizLights.setAllLightsColor(config.tobStandardLootColor());
                     }
                 }
                 reset();

@@ -29,13 +29,15 @@ public class ChambersOfXeric {
     private Client client;
 
     private static final Pattern SPECIAL_DROP_MESSAGE = Pattern.compile("(.+) - (.+)");
+    private static final Pattern POINTS_MESSAGE = Pattern.compile("Total points: .*, Personal points: ");
     private static final Set<String> uniques = ImmutableSet.of("Dexterous prayer scroll", "Arcane prayer scroll", "Twisted buckler",
             "Dragon hunter crossbow", "Dinh's bulwark", "Ancestral hat", "Ancestral robe top", "Ancestral robe bottom",
             "Dragon claws", "Elder maul", "Kodai insignia", "Twisted bow");
 
+    private boolean uniqueReceived = false;
+
     //TODO dust and kit need to be based on chat message
     //TODO look at how to do disco lights with dust/kit
-    //TODO look at no unique received state
     public void onChatMessage(ChatMessage event) {
         if (client.getLocalPlayer() == null || client.getLocalPlayer().getName() == null)
             return;
@@ -54,6 +56,8 @@ public class ChambersOfXeric {
 
             if (matcher.find())
             {
+                uniqueReceived = true;
+
                 final String dropReceiver = Text.sanitize(matcher.group(1)).trim();
                 final String dropName = matcher.group(2).trim();
 
@@ -70,6 +74,18 @@ public class ChambersOfXeric {
                     else
                     {
                         log.debug("Drop received by non-local player: {}, player: {}", dropName, dropReceiver);
+                    }
+                }
+            }
+
+            matcher = POINTS_MESSAGE.matcher(message);
+            if (matcher.find()) {
+                if (uniqueReceived) {
+                    uniqueReceived = false;
+                }
+                else {
+                    if (config.enableCoxStandardLoot()) {
+                        wizLights.setAllLightsColor(config.coxStandardLootColor());
                     }
                 }
             }
