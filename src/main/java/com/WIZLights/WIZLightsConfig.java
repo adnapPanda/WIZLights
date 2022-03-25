@@ -561,10 +561,34 @@ public interface WIZLightsConfig extends Config
 	String tobDropsColorSection = "tobDropsColor";
 
 	@ConfigItem(
+			keyName = "enableRecolorTobStandardLoot",
+			name = "Recolor standard loot",
+			description = "Enable recoloring the lights when no unique item is obtained",
+			position = 0,
+			section = tobDropsColorSection
+	)
+	default boolean enableRecolorTobStandardLoot()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "standardLootTobColor",
+			name = "Standard loot",
+			description = "Color of the lights when no unique item is obtained",
+			position = 1,
+			section = tobDropsColorSection
+	)
+	default Color standardLootTobColor()
+	{
+		return Color.WHITE;
+	}
+
+	@ConfigItem(
 			keyName = "enableRecolorTobYour",
 			name = "Recolor your purple",
-			description = "Enable recoloring the lights when you receive a ToB unique",
-			position = 0,
+			description = "Enable recoloring the lights when you receive a unique",
+			position = 2,
 			section = tobDropsColorSection
 	)
 	default boolean enableRecolorTobYour()
@@ -575,8 +599,8 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "yourPurpleColor",
 			name = "Your purple",
-			description = "Color of the lights when you receive a ToB unique",
-			position = 1,
+			description = "Color of the lights when you receive a unique",
+			position = 3,
 			section = tobDropsColorSection
 	)
 	default Color yourPurpleColor()
@@ -587,8 +611,8 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "enableRecolorTobOther",
 			name = "Recolor other purple",
-			description = "Enable recoloring the lights when someone else receives a ToB unique",
-			position = 2,
+			description = "Enable recoloring the lights when someone else receives a unique",
+			position = 4,
 			section = tobDropsColorSection
 	)
 	default boolean enableRecolorTobOther()
@@ -599,8 +623,8 @@ public interface WIZLightsConfig extends Config
 	@ConfigItem(
 			keyName = "otherPurpleColor",
 			name = "Other purple",
-			description = "Color of the lights when someone else receives a ToB unique",
-			position = 3,
+			description = "Color of the lights when someone else receives a unique",
+			position = 5,
 			section = tobDropsColorSection
 	)
 	default Color otherPurpleColor()

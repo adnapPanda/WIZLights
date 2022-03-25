@@ -7,8 +7,6 @@ import com.google.inject.Provides;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
-import net.runelite.api.GameObject;
-import net.runelite.api.ObjectComposition;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameObjectSpawned;
 import net.runelite.client.config.ConfigManager;
@@ -16,13 +14,13 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.util.Text;
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.awt.Color;
 
 @Slf4j
 @PluginDescriptor(
-	name = "WIZ Smart Lights"
+		name = "WIZ Smart Lights",
+		description = "A plugin to control the WIZ Smart Lights"
 )
 public class WIZLightsPlugin extends Plugin
 {

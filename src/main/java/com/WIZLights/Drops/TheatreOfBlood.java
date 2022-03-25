@@ -29,8 +29,10 @@ public class TheatreOfBlood {
 
     public void onGameObjectSpawned(GameObjectSpawned event) {
         int objId = event.getGameObject().getId();
+        log.debug("obj in tob id: " + objId);
         if (rewardChestIds.contains(objId)) {
-            int impostorId =  client.getObjectDefinition(objId).getImpostor().getId();
+            int impostorId = client.getObjectDefinition(objId).getImpostor().getId();
+            log.debug("impostorId: " + impostorId);
 
             if (impostorId == yourPurpleChestId) {
                 log.debug("Tob purple in your name");
