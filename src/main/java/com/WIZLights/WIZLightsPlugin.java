@@ -7,15 +7,24 @@ import com.google.inject.Provides;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
+import net.runelite.api.NPC;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameObjectSpawned;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.NpcLootReceived;
+import net.runelite.client.game.ItemStack;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.plugins.loottracker.LootReceived;
 import net.runelite.client.util.Text;
+import net.runelite.client.util.WildcardMatcher;
+import net.runelite.http.api.loottracker.LootRecordType;
 
 import java.awt.Color;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @Slf4j
 @PluginDescriptor(
@@ -45,11 +54,13 @@ public class WIZLightsPlugin extends Plugin
 	@Inject
 	private TheatreOfBlood tob;
 
+	private List<String> lootNpcs;
 
 	@Override
 	protected void startUp() throws Exception
 	{
 		tob.reset();
+		lootNpcs = Collections.emptyList();
 	}
 
 	@Override
@@ -57,6 +68,41 @@ public class WIZLightsPlugin extends Plugin
 	{
 		udp.closeSocket();
 	}
+
+	@Subscribe
+	public void onNpcLootReceived(NpcLootReceived npcLootReceived)
+	{
+		NPC npc = npcLootReceived.getNpc();
+		Collection<ItemStack> items = npcLootReceived.getItems();
+
+		if (!lootNpcs.isEmpty())
+		{
+			for (String npcName : lootNpcs)
+			{
+				if (WildcardMatcher.matches(npcName, npc.getName()))
+				{
+					valuableDrops.processLoot(npc.getName(), items);
+					return;
+				}
+			}
+		}
+		else
+		{
+			valuableDrops.processLoot(npc.getName(), items);
+		}
+	}
+
+	@Subscribe
+	public void onLootReceived(LootReceived lootReceived)
+	{
+		if (lootReceived.getType() != LootRecordType.EVENT && lootReceived.getType() != LootRecordType.PICKPOCKET)
+		{
+			return;
+		}
+
+		valuableDrops.processLoot(lootReceived.getName(), lootReceived.getItems());
+	}
+
 
 	@Subscribe
 	public void onChatMessage(ChatMessage event)
