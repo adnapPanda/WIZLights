@@ -249,7 +249,7 @@ public interface WIZLightsConfig extends Config
 	)
 	default boolean enableCoxStandardLoot()
 	{
-		return true;
+		return false;
 	}
 
 	@ConfigItem(
@@ -569,7 +569,7 @@ public interface WIZLightsConfig extends Config
 	)
 	default boolean enableTobStandardLoot()
 	{
-		return true;
+		return false;
 	}
 
 	@ConfigItem(

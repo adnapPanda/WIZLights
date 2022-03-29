@@ -112,7 +112,7 @@ public class WIZLightsPlugin extends Plugin
 
 		String message = Text.sanitize(Text.removeTags(event.getMessage()));
 		//To test if your lights work
-		if (event.getName().contains(client.getLocalPlayer().getName()) && message.contains("Wiztest")) {
+		if (message.contains("Wiztest") && event.getName().contains(client.getLocalPlayer().getName())) {
 			String[] msg = message.split(" ",4);
 			Color color = new Color(Integer.parseInt(msg[1]), Integer.parseInt(msg[2]), Integer.parseInt(msg[3]));
 			wizLights.setAllLightsColor(color);

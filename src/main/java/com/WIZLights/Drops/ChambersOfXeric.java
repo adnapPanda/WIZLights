@@ -67,15 +67,10 @@ public class ChambersOfXeric {
                 {
                     if (dropReceiver.equals(Text.sanitize(client.getLocalPlayer().getName())))
                     {
-                        log.debug("Special loot: {} received by {}", dropName, dropReceiver);
                         Color color = getUniqueGroupColor(dropName);
                         if (color != null) {
                             wizLights.setAllLightsColor(color);
                         }
-                    }
-                    else
-                    {
-                        log.debug("Drop received by non-local player: {}, player: {}", dropName, dropReceiver);
                     }
                 }
             }

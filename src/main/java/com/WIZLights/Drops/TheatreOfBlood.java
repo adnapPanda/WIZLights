@@ -38,14 +38,11 @@ public class TheatreOfBlood {
 
     public void onGameObjectSpawned(GameObjectSpawned event) {
         int objId = event.getGameObject().getId();
-        log.debug("obj in tob id: " + objId);
         if (rewardChestIds.contains(objId)) {
             chestCount++;
             int impostorId = client.getObjectDefinition(objId).getImpostor().getId();
-            log.debug("impostorId: " + impostorId);
 
             if (impostorId == yourPurpleChestId) {
-                log.debug("Tob purple in your name");
                 uniqueReceived = true;
                 if (config.enableRecolorTobYour()) {
                     wizLights.setAllLightsColor(config.yourPurpleColor());
@@ -53,7 +50,6 @@ public class TheatreOfBlood {
 
             }
             else if (impostorId == otherPurpleChestId) {
-                log.debug("Tob purple in someone else's name");
                 uniqueReceived = true;
                 if (config.enableRecolorTobOther()) {
                     wizLights.setAllLightsColor(config.otherPurpleColor());
@@ -62,7 +58,6 @@ public class TheatreOfBlood {
 
             if (chestCount == getTobTeamSize()) {
                 if (!uniqueReceived) {
-                    log.debug("No purples received");
                     if (config.enableTobStandardLoot()) {
                         wizLights.setAllLightsColor(config.tobStandardLootColor());
                     }
