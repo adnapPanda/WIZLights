@@ -7,6 +7,8 @@ import com.google.common.collect.ImmutableSet;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
+import net.runelite.api.GameState;
+import net.runelite.api.Varbits;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.client.util.Text;
 
@@ -141,5 +143,9 @@ public class ChambersOfXeric {
             default:
                 return null;
         }
+    }
+
+    public boolean isInCox() {
+        return (client.getGameState() == GameState.LOGGED_IN && client.getVar(Varbits.IN_RAID) == 1);
     }
 }

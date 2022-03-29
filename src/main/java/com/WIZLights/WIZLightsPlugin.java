@@ -88,7 +88,7 @@ public class WIZLightsPlugin extends Plugin
 		}
 		else
 		{
-			valuableDrops.processLoot(npc.getName(), items);
+			if (!tob.isInTob() && !cox.isInCox()) valuableDrops.processLoot(npc.getName(), items);
 		}
 	}
 
@@ -100,7 +100,7 @@ public class WIZLightsPlugin extends Plugin
 			return;
 		}
 
-		valuableDrops.processLoot(lootReceived.getName(), lootReceived.getItems());
+		if (!tob.isInTob() && !cox.isInCox()) valuableDrops.processLoot(lootReceived.getName(), lootReceived.getItems());
 	}
 
 
@@ -108,7 +108,7 @@ public class WIZLightsPlugin extends Plugin
 	public void onChatMessage(ChatMessage event)
 	{
 		valuableDrops.onChatMessage(event);
-		cox.onChatMessage(event);
+		if (cox.isInCox()) cox.onChatMessage(event);
 
 		String message = Text.sanitize(Text.removeTags(event.getMessage()));
 		//To test if your lights work
