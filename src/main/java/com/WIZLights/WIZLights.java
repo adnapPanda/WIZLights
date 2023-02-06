@@ -51,7 +51,11 @@ public class WIZLights {
         executorService.execute(()->setAllLightsColorExecute(color));
     }
 
-    private void restoreLights() {
+    public void restoreLights() {
+        if (previousStates.isEmpty()) {
+            return;
+        }
+
         log.debug("Restoring lights");
         List<String> ipAddresses = Text.fromCSV(config.wizLightIPAddresses());
 
