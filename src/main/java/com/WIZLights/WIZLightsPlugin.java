@@ -66,6 +66,7 @@ public class WIZLightsPlugin extends Plugin
 	@Override
 	protected void shutDown() throws Exception
 	{
+		wizLights.restoreLights();
 		udp.closeSocket();
 	}
 
