@@ -71,6 +71,10 @@ public class ChambersOfXeric {
                         if (color != null) {
                             wizLights.setAllLightsColor(color);
                         }
+                    } else {
+                        if (config.enableRecolorCoxOther()) {
+                            wizLights.setAllLightsColor(config.coxOtherPurpleColor());
+                        }
                     }
                 }
             }

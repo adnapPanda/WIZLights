@@ -409,10 +409,34 @@ public interface WIZLightsConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "enableRecolorCoxOther",
+			name = "Recolor other purple",
+			description = "Enable recoloring the lights when someone else receives a unique",
+			position = 14,
+			section = coxDropsColorSection
+	)
+	default boolean enableRecolorCoxOther()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "coxOtherPurpleColor",
+			name = "Other purple",
+			description = "Color of the lights when someone else receives a unique",
+			position = 15,
+			section = coxDropsColorSection
+	)
+	default Color coxOtherPurpleColor()
+	{
+		return new Color(100, 0, 255);
+	}
+
+	@ConfigItem(
 			keyName = "groupTwistedBow",
 			name = "Twisted bow",
 			description = "Group color to use when this item is obtained",
-			position = 14,
+			position = 16,
 			section = coxDropsColorSection
 	)
 	default ItemGroup groupTwistedBow()
@@ -424,7 +448,7 @@ public interface WIZLightsConfig extends Config
 			keyName = "groupKodai",
 			name = "Kodai insignia",
 			description = "Group color to use when this item is obtained",
-			position = 15,
+			position = 17,
 			section = coxDropsColorSection
 	)
 	default ItemGroup groupKodai()
@@ -436,7 +460,7 @@ public interface WIZLightsConfig extends Config
 			keyName = "groupElderMaul",
 			name = "Elder maul",
 			description = "Group color to use when this item is obtained",
-			position = 16,
+			position = 18,
 			section = coxDropsColorSection
 	)
 	default ItemGroup groupElderMaul()
@@ -448,7 +472,7 @@ public interface WIZLightsConfig extends Config
 			keyName = "groupClaws",
 			name = "Dragon claws",
 			description = "Group color to use when this item is obtained",
-			position = 17,
+			position = 19,
 			section = coxDropsColorSection
 	)
 	default ItemGroup groupClaws()
@@ -460,7 +484,7 @@ public interface WIZLightsConfig extends Config
 			keyName = "groupAncestralHat",
 			name = "Ancestral hat",
 			description = "Group color to use when this item is obtained",
-			position = 18,
+			position = 20,
 			section = coxDropsColorSection
 	)
 	default ItemGroup groupAncestralHat()
@@ -472,7 +496,7 @@ public interface WIZLightsConfig extends Config
 			keyName = "groupAncestralTop",
 			name = "Ancestral robe top",
 			description = "Group color to use when this item is obtained",
-			position = 19,
+			position = 21,
 			section = coxDropsColorSection
 	)
 	default ItemGroup groupAncestralTop()
@@ -484,7 +508,7 @@ public interface WIZLightsConfig extends Config
 			keyName = "groupAncestralBottom",
 			name = "Ancestral robe bottom",
 			description = "Group color to use when this item is obtained",
-			position = 20,
+			position = 22,
 			section = coxDropsColorSection
 	)
 	default ItemGroup groupAncestralBottom()
@@ -496,7 +520,7 @@ public interface WIZLightsConfig extends Config
 			keyName = "groupDinhs",
 			name = "Dinh's bulwark",
 			description = "Group color to use when this item is obtained",
-			position = 21,
+			position = 23,
 			section = coxDropsColorSection
 	)
 	default ItemGroup groupDinhs()
@@ -508,7 +532,7 @@ public interface WIZLightsConfig extends Config
 			keyName = "groupDHCB",
 			name = "Dragon hunter crossbow",
 			description = "Group color to use when this item is obtained",
-			position = 22,
+			position = 24,
 			section = coxDropsColorSection
 	)
 	default ItemGroup groupDHCB()
@@ -520,7 +544,7 @@ public interface WIZLightsConfig extends Config
 			keyName = "groupBuckler",
 			name = "Twisted buckler",
 			description = "Group color to use when this item is obtained",
-			position = 23,
+			position = 25,
 			section = coxDropsColorSection
 	)
 	default ItemGroup groupBuckler()
@@ -532,7 +556,7 @@ public interface WIZLightsConfig extends Config
 			keyName = "groupArcane",
 			name = "Arcane prayer scroll",
 			description = "Group color to use when this item is obtained",
-			position = 24,
+			position = 26,
 			section = coxDropsColorSection
 	)
 	default ItemGroup groupArcane()
@@ -544,7 +568,7 @@ public interface WIZLightsConfig extends Config
 			keyName = "groupDex",
 			name = "Dexterous prayer scroll",
 			description = "Group color to use when this item is obtained",
-			position = 25,
+			position = 27,
 			section = coxDropsColorSection
 	)
 	default ItemGroup groupDex()
