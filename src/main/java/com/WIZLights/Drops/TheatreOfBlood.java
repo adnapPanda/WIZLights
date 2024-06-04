@@ -68,7 +68,7 @@ public class TheatreOfBlood {
     }
 
     public boolean isInTob() {
-        int tobVar = client.getVar(Varbits.THEATRE_OF_BLOOD);
+        int tobVar = client.getVarbitValue(Varbits.THEATRE_OF_BLOOD);
         return (tobVar == 2 || tobVar == 3);
     }
 

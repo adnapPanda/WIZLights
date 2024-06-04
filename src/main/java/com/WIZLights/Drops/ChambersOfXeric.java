@@ -145,6 +145,6 @@ public class ChambersOfXeric {
     }
 
     public boolean isInCox() {
-        return (client.getGameState() == GameState.LOGGED_IN && client.getVar(Varbits.IN_RAID) == 1);
+        return (client.getGameState() == GameState.LOGGED_IN && client.getVarbitValue(Varbits.IN_RAID) == 1);
     }
 }
